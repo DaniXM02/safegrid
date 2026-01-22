@@ -1,6 +1,0 @@
-ngrok-safegrid.service                     enabled         enabled
-safegrid-dashboard.service                 enabled         enabled
-safegrid-stats-writer.service              enabled         enabled
-safegrid-tomas-ingest.service              enabled         enabled
-safegrid-voice.service                     enabled         enabled
-safegrid-whatsapp.service                  enabled         enabled
