@@ -1,0 +1,15 @@
+# /etc/systemd/system/ngrok-safegrid.service
+[Unit]
+Description=ngrok tunnel for SafeGrid (port 3000)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=teleadmin
+ExecStart=/usr/local/bin/ngrok http 3000
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

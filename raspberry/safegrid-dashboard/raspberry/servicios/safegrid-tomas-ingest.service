@@ -1,0 +1,22 @@
+# /etc/systemd/system/safegrid-tomas-ingest.service
+[Unit]
+Description=SafeGrid MQTT->SQLite Ingest (Tomas+Alerts)
+After=network-online.target mosquitto.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=teleadmin
+WorkingDirectory=/home/teleadmin/safegrid-dashboard
+EnvironmentFile=/etc/safegrid.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/home/teleadmin/venv-safegrid/bin/python /home/teleadmin/safegrid-dashboard/ingest_tomas.py
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
+
+# /etc/systemd/system/safegrid-tomas-ingest.service.d/override.conf
+[Service]
+Environment=PYTHONUNBUFFERED=1

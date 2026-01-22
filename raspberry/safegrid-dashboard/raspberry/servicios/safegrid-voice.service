@@ -1,0 +1,28 @@
+# /etc/systemd/system/safegrid-voice.service
+[Unit]
+Description=SafeGrid Voice Server (Flask + Vosk + MQTT + BlueALSA)
+After=network-online.target bluetooth.service bluealsa.service bt-autoconnect-echo.service
+Wants=network-online.target bluetooth.service bluealsa.service bt-autoconnect-echo.service
+
+[Service]
+Type=simple
+User=teleadmin
+WorkingDirectory=/home/teleadmin
+Environment=PYTHONUNBUFFERED=1
+
+# Usa el python del venv (esto reemplaza "source venv-safegrid/bin/activate")
+ExecStart=/home/teleadmin/venv-safegrid/bin/python /home/teleadmin/voice_server.py
+
+Restart=always
+RestartSec=2
+
+# Logs a journalctl (sin “quedarse pegado”)
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+
+# /etc/systemd/system/safegrid-voice.service.d/override.conf
+[Service]
+EnvironmentFile=/home/teleadmin/safegrid.env

@@ -1,0 +1,21 @@
+# Entornos / caches
+venv-safegrid/
+__pycache__/
+*.pyc
+
+# Credenciales
+*.env
+safegrid.env
+
+# Base de datos y temporales
+*.db
+*.db-wal
+*.db-shm
+*.BAK*
+
+# Modelos grandes
+vosk-model-*/
+*.zip
+
+# Audio / respaldos
+backup_audio/
